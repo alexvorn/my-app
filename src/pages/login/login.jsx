@@ -15,8 +15,23 @@ class Login extends Component {
 
     render() {
         return (
-            <div>
-                <button onClick={this.loginUser}>Login</button>
+            <div className='login-page container'>
+                <div>
+                    <img src={"./image/Backpack2@2x.svg"}/>
+                </div>
+                <div>
+                    <img />
+                    <h1>Sign Up</h1>
+                    <div className='registration-form'>
+                        <form action="">
+                            <span>Your email</span>
+                            <input type="text" placeholder="Email"/>
+                            <input type="password" placeholder="Create your password"/>
+                            <input type="password" placeholder="Confirm your password"/>
+                            <input  className="btn-sing-up" type="submit" value="Sing up" />
+                        </form>
+                    </div>
+                </div>
             </div>
         )
     }

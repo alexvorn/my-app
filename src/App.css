@@ -16,6 +16,91 @@ button {
 a {
   padding: 0 50px;
 }
+.container {
+  width: 100%;
+  max-width: 1600px;
+  padding: 0 15px;
+  margin: auto;
+}
+.login-page {
+  position: relative;
+  border-radius: 50px;
+  height: 900px;
+  display: flex;
+  background-color: #e5e5e530;
+}
+.login-page div:nth-child(1) {
+  width: 100%;
+  max-width: 640px;
+  background: linear-gradient(180deg, #FEB9D6 0%, #FEDCEA 100%);
+  height: 100%;
+  box-shadow: 0px 10px 50px #F0D2DF;
+  border-radius: 50px;
+  transform: matrix(1, 0, 0, -1, 0, 0);
+}
+
+.login-page div:nth-child(2) {
+  width: 100%;
+  max-width: 960px;
+}
+
+.login-page div:nth-child(2) h1 {
+  font-family: Quicksand;
+  font-weight: bold;
+  font-size: 38px;
+  line-height: 47.5px;
+  vertical-align: Top;
+  color: #171725;
+  text-align: center;
+}
+.registration-form {
+  width: 100%;
+  max-width: 514px;
+  margin: auto;
+  background-color: #FFFFFF;
+  border-radius: 24px;
+}
+.registration-form form {
+  position: relative;
+  padding: 60px 0;
+}
+.registration-form form span {
+  position: absolute;
+  font-size: 10px;
+  font-weight: medium;
+  color: #10C9BE;
+  text-align: left;
+  vertical-align: top;
+  left: 109px;
+  top: 54px;
+  z-index: 10;
+  background-color: #FFFFFF;
+}
+
+.registration-form input {
+  width: 296px;
+  padding: 16px 0 24px 34px;
+  border-radius: 28px;
+  border: 1px solid #E8E7EC;
+  margin: auto;
+  display: block;
+  margin-bottom: 20px;
+}
+
+.registration-form input:focus {
+  border: 1px solid #BBB6C5;
+  outline: none !important;
+}
+
+.registration-form .btn-sing-up {
+  width: 330px;
+  padding: 16px 29px 23px 30px;
+  color: #FFFFFF;
+  background: #0B8E86;
+  margin-top: 10px;
+  margin-bottom: 0;
+}
+
 @keyframes App-logo-spin {
   from {
     transform: rotate(0deg);
