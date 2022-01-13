@@ -1,9 +1,12 @@
-export default function loginReducer(state = {}, action) {
-    if (action.type === 'user') {
-      return {
-        ...state,
-        user: action.user
-      }
+import { LOGIN } from '../constants/actionTypes';
+
+export default function authReducer(state = {}, action) {
+    if (action.type === LOGIN) {
+        return {
+            ...state,
+            user: action.payload
+        }
     }
+
     return state
-  }
+}

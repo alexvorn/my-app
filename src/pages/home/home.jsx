@@ -3,8 +3,12 @@ import { connect } from "react-redux";
 
 class home extends Component {
     render() {
+        const { user } = this.props;
+        const email = user?.email;
+
         return (
             <div>
+                <span>{email}</span>
                 <h1>Home</h1>
             </div>
         )
@@ -13,8 +17,6 @@ class home extends Component {
 
 export default connect(
     state => ({
-        user: state
-    }),
-    dispatch => ({
-    }),
-  )(home);
+        user: state.auth.user
+    })
+)(home);
