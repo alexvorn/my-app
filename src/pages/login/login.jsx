@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { connect } from "react-redux";
+import { connect } from 'react-redux';
 import {login as loginAction } from '../../actions/login';
 
 class Login extends Component {
@@ -17,10 +17,10 @@ class Login extends Component {
         return (
             <div className='login-page container'>
                 <div>
-                    <img src={"./image/Backpack2@2x.svg"}/>
+                    <img src={require('../../images/robot.png')} alt="#"/>
                 </div>
                 <div>
-                    <img />
+                    <img src={require('../../images/logo.png')}/>
                     <h1>Sign Up</h1>
                     <div className='registration-form'>
                         <form action="">
@@ -28,8 +28,9 @@ class Login extends Component {
                             <input type="text" placeholder="Email"/>
                             <input type="password" placeholder="Create your password"/>
                             <input type="password" placeholder="Confirm your password"/>
-                            <input  className="btn-sing-up" type="submit" value="Sing up" />
+                            <input  className="btn-sing-up" type="submit" value="Sing up" onClick={this.loginUser}/>
                         </form>
+                        <p>Already have an account? <a>Log In now</a></p>
                     </div>
                 </div>
             </div>

@@ -27,7 +27,7 @@ a {
   border-radius: 50px;
   height: 900px;
   display: flex;
-  background-color: #e5e5e530;
+  background-color: #FFFFFF;
 }
 .login-page div:nth-child(1) {
   width: 100%;
@@ -37,11 +37,25 @@ a {
   box-shadow: 0px 10px 50px #F0D2DF;
   border-radius: 50px;
   transform: matrix(1, 0, 0, -1, 0, 0);
+  position: relative;
+}
+
+.login-page div:nth-child(1) img {
+  transform: rotate(180deg);
+  position: absolute;
+  top: 243px;
+  left: 145px;
 }
 
 .login-page div:nth-child(2) {
   width: 100%;
   max-width: 960px;
+}
+
+.login-page div:nth-child(2) img {
+  display: block;
+  margin: auto;
+  margin-top: 54px;
 }
 
 .login-page div:nth-child(2) h1 {
@@ -52,7 +66,20 @@ a {
   vertical-align: Top;
   color: #171725;
   text-align: center;
+  margin: 35px 0;
 }
+
+.login-page div:nth-child(2) p {
+  text-align: center;
+  font-weight: 500;
+  font-size: 17px;
+  line-height: 25px;
+}
+
+.login-page div:nth-child(2) a {
+  padding: 0;
+}
+
 .registration-form {
   width: 100%;
   max-width: 514px;
@@ -99,6 +126,7 @@ a {
   background: #0B8E86;
   margin-top: 10px;
   margin-bottom: 0;
+  background: linear-gradient(#17ECDF, #0B8E86);
 }
 
 @keyframes App-logo-spin {
