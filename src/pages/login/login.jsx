@@ -9,6 +9,7 @@ class Login extends Component {
             email: 'andrejstarusev@gmail.com',
             id: '1',
         }
+        console.log('email', this.emailInput.value, 'password', this.createPassword.value)
 
         this.props.loginUser(user);
     }
@@ -23,13 +24,15 @@ class Login extends Component {
                     <img src={require('../../images/logo.png')}/>
                     <h1>Sign Up</h1>
                     <div className='registration-form'>
-                        <form action="">
-                            <span>Your email</span>
-                            <input type="text" placeholder="Email"/>
-                            <input type="password" placeholder="Create your password"/>
-                            <input type="password" placeholder="Confirm your password"/>
-                            <input  className="btn-sing-up" type="submit" value="Sing up" onClick={this.loginUser}/>
-                        </form>
+                        <div>
+                            <form action="">
+                                <span>Your email</span>
+                                <input type="text" placeholder="Email" ref={(input) => { this.emailInput = input}}/>
+                                <input type="password" placeholder="Create your password" ref={(input) => { this.createPassword = input}}/>
+                                <input type="password" placeholder="Confirm your password" ref={(input) => { this.confirmPassword = input}}/>
+                                <input  className="btn-sing-up" type="submit" value="Sing up" onClick={this.loginUser}/>
+                            </form>
+                        </div>
                         <p>Already have an account? <a>Log In now</a></p>
                     </div>
                 </div>
