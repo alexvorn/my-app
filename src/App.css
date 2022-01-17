@@ -97,6 +97,12 @@ a {
   z-index: 10;
 }
 
+.registration-form form>a {
+  text-decoration: none;
+  display: block;
+  text-align: center;
+}
+
 .registration-form>div {
   position: relative;
 }
@@ -151,17 +157,21 @@ a {
   margin-bottom: 20px;
 }
 
+.registration-form input[type=password] {
+  margin-bottom: 6px;
+}
+
 .registration-form input:focus {
   border: 1px solid #BBB6C5;
   outline: none !important;
 }
 
-.registration-form .btn-sing-up {
+.registration-form .btn-login-up {
   width: 330px;
   padding: 16px 29px 23px 30px;
   color: #FFFFFF;
   background: #0B8E86;
-  margin-top: 10px;
+  margin-top: 30px;
   margin-bottom: 0;
   background: linear-gradient(#17ECDF, #0B8E86);
 }
