@@ -8,6 +8,7 @@ export default function Header(props) {
             <div>
                 <Link to="/login">Login</Link>
                 <Link to="/home">Home</Link>
+                <Link to="/registration">Registration</Link>
             </div>
             {email && <span>Hello {email}</span>}
         </div>
