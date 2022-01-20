@@ -8,24 +8,23 @@ class Login extends Component {
 
     loginUser = () => {
         const user = {
-            email: '',
-            password: '',
+            email: 'dasdsa',
+            password: 'dsadsa',
         }
-        user.email = this.emailInput.value;
-        user.password = this.passwordInput.value;
         console.log(user)
 
         this.props.loginUser(user);
     }
+    
 
     render() {
         return (
-            <div className='login-page container'>
+            <div className='login-page'>
                 <Image />
                 <div>
                     <img src={require('../../images/logo.png')}/>
                     <h1>Login</h1>
-                    <AuthForm />
+                    <AuthForm loginUser={this.props.loginUser}/>
                 </div>
             </div>
         )

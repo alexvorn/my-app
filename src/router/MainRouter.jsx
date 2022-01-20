@@ -8,11 +8,11 @@ import {
 import Header from '../components/header';
 import Home from '../pages/home';
 import Login from '../pages/login';
-import Registration from '../pages/registration'
+import Registration from '../pages/registration';
 
 function MainRouter(props) {
     const defaultRedirect = props.user ? '/home' : '/login';
-
+    
     return (
         <BrowserRouter>
             <Header user={props.user} />
@@ -40,6 +40,12 @@ function mapStateToProps(state) {
     }
 }
 
+function registrationActive(state) {
+    return {
+        active: state.registrationActive
+    }
+}
+
 const emptyFunction = () => ({});
   
-export default connect(mapStateToProps, emptyFunction)(MainRouter);
+export default connect(mapStateToProps, registrationActive, emptyFunction)(MainRouter);

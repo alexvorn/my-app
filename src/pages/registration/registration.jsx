@@ -1,17 +1,31 @@
 import React, { Component } from 'react';
 import Image from '../../components/imageRobot';
 import AuthForm from '../../components/authForm';
+import { login as loginAction } from '../../actions/login';
 import { connect } from 'react-redux';
 
-class registration extends Component {
+class Registration extends Component {
+
+    loginUser = () => {
+        const user = {
+            email: 'dasdsa',
+            password: 'dsadsa',
+        }
+        console.log(user)
+
+        this.props.loginUser(user);
+    }
+
     render() {
+        console.log(this.props.loginUser)
+        const registrationActive = true;
         return (
-            <div className='login-page container'>
+            <div className='login-page'>
                 <Image />
                 <div>
                     <img src={require('../../images/logo.png')}/>
                     <h1>Sing up</h1>
-                    <AuthForm />
+                    <AuthForm registration={registrationActive} loginUser={this.props.loginUser}/>
                 </div>
             </div>
         )
@@ -23,5 +37,8 @@ export default connect(
         user: state.login
     }),
     dispatch => ({
+        loginUser: user => {
+            dispatch(loginAction(user))
+        }
     }),
-)(registration);
+)(Registration);
