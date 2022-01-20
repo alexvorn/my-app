@@ -17,7 +17,6 @@ class Registration extends Component {
     }
 
     render() {
-        console.log(this.props.loginUser)
         const registrationActive = true;
         return (
             <div className='login-page'>

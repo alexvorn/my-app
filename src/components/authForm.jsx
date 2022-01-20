@@ -6,11 +6,14 @@ export default class AuthForm extends Component {
     this.state = {
       email: '',
       password: '',
+      error: '',
       confirmPassword: '',
     };
+
     this.getPassword = this.getPassword.bind(this);
     this.getEmail = this.getEmail.bind(this);
-    this.getConfirmPassword = this.getConfirmPassword.bind(this);
+    this.confirmPassword = this.confirmPassword.bind(this);
+    this.isValidationPassword = this.isValidationPassword.bind(this);
   }
 
     getPassword(e) {
@@ -22,12 +25,16 @@ export default class AuthForm extends Component {
       const email = e.target.value;
       this.setState({email});
     }
-
-    getConfirmPassword(e) {
+    confirmPassword(e) {
+      const error = '';
       const confirmPassword = e.target.value;
-      this.setState({confirmPassword});
+      this.setState({confirmPassword, error});
     }
-  
+
+    isValidationPassword() {
+      this.state.password === this.state.confirmPassword ? this.setState({}) : this.setState({error: 'passwords don`t match'})
+    }
+
 
     render() {
       const { registration } = this.props;
@@ -35,8 +42,10 @@ export default class AuthForm extends Component {
         email: this.state.email,
         password: this.state.password,
       };
+
+
       this.props.loginUser(user)
-      console.log(user)
+      console.log(this.state.password)
 
       const link = registration
         ? <p>Already have an account? <a>Log In now</a></p>
@@ -50,8 +59,9 @@ export default class AuthForm extends Component {
               <input type="text" placeholder="Email" onInput={this.getEmail}/>
               <input type="password" placeholder="Your password" onInput={this.getPassword} />
               {registration && (
-                <input type="password" placeholder="Confirm password" onInput={this.getConfirmPassword} onBlur={ (e) => { this.state.password === e.target.value ? user.password = this.state.password : console.log('neverniy parol') }} />
+                <input type="password" placeholder="Confirm password"  onInput={this.confirmPassword} onBlur={() => this.isValidationPassword()}/>
               )}
+              <p>{this.state.error}</p>
               {!registration && (
                 <a href="">Forgot password?</a>
               )}
@@ -59,7 +69,7 @@ export default class AuthForm extends Component {
                 className="btn-login-up"
                 type="submit"
                 value={registration ? 'Sing up' : 'Login'}
-                onClick={this.loginUser}
+                onClick={this.state.error === '' ? this.loginUser : ''}
               />
             </div>
           </div>
