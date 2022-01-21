@@ -6,11 +6,7 @@ import { connect } from 'react-redux';
 
 class Registration extends Component {
 
-    loginUser = () => {
-        const user = {
-            email: 'dasdsa',
-            password: 'dsadsa',
-        }
+    loginUser = (user) => {
         console.log(user)
 
         this.props.loginUser(user);
@@ -24,7 +20,7 @@ class Registration extends Component {
                 <div>
                     <img src={require('../../images/logo.png')}/>
                     <h1>Sing up</h1>
-                    <AuthForm registration={registrationActive} loginUser={this.props.loginUser}/>
+                    <AuthForm registration={registrationActive} onSubmite={this.loginUser}/>
                 </div>
             </div>
         )
