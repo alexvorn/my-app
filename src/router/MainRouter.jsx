@@ -12,7 +12,7 @@ import Registration from '../pages/registration';
 
 function MainRouter(props) {
     const defaultRedirect = props.user ? '/home' : '/login';
-    
+    console.log('props',props)
     return (
         <BrowserRouter>
             <Header user={props.user} />
@@ -46,6 +46,6 @@ function registrationActive(state) {
     }
 }
 
-const emptyFunction = () => ({});
+
   
-export default connect(mapStateToProps, registrationActive, emptyFunction)(MainRouter);
+export default connect(mapStateToProps, registrationActive)(MainRouter);

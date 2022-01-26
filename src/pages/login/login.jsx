@@ -7,9 +7,6 @@ import AuthForm from '../../components/authForm';
 class Login extends Component {
 
     loginUser = (user) => {
-        console.log(2)
-        console.log(user)
-
         this.props.loginUser(user);
     }
     
@@ -29,9 +26,10 @@ class Login extends Component {
 }
 
 export default connect(
-    state => ({
-        user: state.login
-    }),
+    state => {
+        console.log(state)
+        return {user: state.login}
+    },
     dispatch => ({
         loginUser: user => {
             dispatch(loginAction(user))

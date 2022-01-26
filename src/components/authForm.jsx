@@ -49,10 +49,10 @@ export default class AuthForm extends Component {
 
   isValidation = () => {
     const validEmail = this.isValidationEmail();
-    const validPassword = this.isValidationPassword();
-    console.log('email', validEmail, 'password', validPassword)
+    // const validPassword = this.isValidationPassword();
+    // console.log('email', validEmail, 'password', validPassword)
 
-    if (validEmail || validPassword === true) {
+    if (validEmail) {
       return true
     }
     return false
