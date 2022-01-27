@@ -26,10 +26,9 @@ class Login extends Component {
 }
 
 export default connect(
-    state => {
-        console.log(state)
-        return {user: state.login}
-    },
+    state => ({
+        user: state.login
+    }),
     dispatch => ({
         loginUser: user => {
             dispatch(loginAction(user))

@@ -1,18 +1,11 @@
 import React, { Component } from 'react';
 import MainRouter from './router/MainRouter';
 import './App.css';
-import axios from 'axios';
+import { users as usersAction} from './actions/users';
+import { connect } from 'react-redux';
 
-axios.get('https://devback.anetaed.org:3000/users', {
-        headers: {
-            'Authorization': `Bearer ${localStorage.getItem('token')}`
-        }
-        })
-        .then(res => {
-            console.log('status', res);
-        })
 
-export default class App extends Component {
+class App extends Component {
     render() {
         return (
             <div>
@@ -21,3 +14,14 @@ export default class App extends Component {
         )
     }
 }
+
+export default connect(
+    state => {
+        console.log(state)
+        return {user: state.login}
+    },
+    dispatch => ({
+        user: dispatch(usersAction()),
+    } 
+    ),
+)(App);
