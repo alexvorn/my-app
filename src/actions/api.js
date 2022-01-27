@@ -1,7 +1,6 @@
 import axios from 'axios';
 
 const basicConfig = {
-    // Andrew 01 Jun: Create local .env file and put it there
     baseURL: 'https://devback.anetaed.org:3000',
   };
   

@@ -30,6 +30,9 @@ export default class AuthForm extends Component {
 
   isValidationPassword = () => {
     if (this.state.password === this.state.confirmPassword) {
+      if (this.state.confirmPassword === '') {
+        return false
+      }
       return true
     }
     this.setState({error: 'passwords don`t match'})
@@ -49,10 +52,10 @@ export default class AuthForm extends Component {
 
   isValidation = () => {
     const validEmail = this.isValidationEmail();
-    // const validPassword = this.isValidationPassword();
+    const validPassword = this.isValidationPassword();
     // console.log('email', validEmail, 'password', validPassword)
 
-    if (validEmail) {
+    if (validEmail && validPassword) {
       return true
     }
     return false
