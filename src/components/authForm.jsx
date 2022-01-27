@@ -11,64 +11,46 @@ export default class AuthForm extends Component {
     };
   }
 
-  getPassword = (e) => {
-    const password = e.target.value;
-    this.setState({password});
+  onInput = (e) => {
+    const email = e.target.name === 'email' ? e.target.value : this.state.email;
+    const password = e.target.name === 'password' ? e.target.value : this.state.password;
+    const confirmPassword = e.target.name === 'Confirm password' ? e.target.value : this.state.confirmPassword;
+    this.setState({email, password, confirmPassword});
+
   }
 
-  getEmail = (e) => {
-    const error = '';
-    const email = e.target.value;
-    this.isValidationEmail(email)
-    this.setState({email, error});
-  }
-  confirmPassword = (e) => {
-    const error = '';
-    const confirmPassword = e.target.value;
-    this.setState({confirmPassword, error});
-  }
-
-  isValidationPassword = () => {
+  validPassword = () => {
     if (this.state.password === this.state.confirmPassword) {
       if (this.state.confirmPassword === '') {
-        return false
+        return false;
       }
-      return true
+      return true;
     }
-    this.setState({error: 'passwords don`t match'})
-    return false
+    this.setState({error: 'passwords don`t match'});
+    return false;
   }
 
-  isValidationEmail = () => {
+  validEmail = () => {
     const re = /[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/;
-    const email = this.state.email;
-    const validateEmail = re.test(String(email).toLowerCase());
-    if (validateEmail) {
-      return true
+    const { email } = this.state;
+    const valid = re.test(String(email).toLowerCase());
+    if (!valid) {
+      this.setState({error: 'email is not valid'});
     }
-    this.setState({error: 'email is not valid'})
-    return false 
+    
+    return valid; 
   }
 
-  isValidation = () => {
-    const validEmail = this.isValidationEmail();
-    const validPassword = this.isValidationPassword();
-    // console.log('email', validEmail, 'password', validPassword)
+  isValidation = () => this.validEmail && this.validPassword;
 
-    if (validEmail && validPassword) {
-      return true
-    }
-    return false
-  }
-
-  onSubmite = () => {
+  onSubmit = () => {
     if (this.isValidation()) {
       const user = {
         email: this.state.email,
         password: this.state.password,
       };
 
-      this.props.onSubmite(user)
+      this.props.onSubmite(user);
     }
   }
 
@@ -84,10 +66,10 @@ export default class AuthForm extends Component {
         <div>
           <div className="form">
             <span>Your email</span>
-            <input type="text" placeholder="Email" onInput={this.getEmail} onBlur={this.isValidationEmail}/>
-            <input type="password" placeholder="Your password" onInput={this.getPassword} />
+            <input type="text" placeholder="Email" name="email" onInput={this.onInput} onBlur={this.validEmail}/>
+            <input type="password" placeholder="Your password" name="password" onInput={this.onInput} />
             {registration && (
-              <input type="password" placeholder="Confirm password"  onInput={this.confirmPassword} onBlur={this.isValidation}/>
+              <input type="password" placeholder="Confirm password" name="Confirm password"  onInput={this.onInput} onBlur={this.validPassword}/>
             )}
             <p>{this.state.error}</p>
             {!registration && (
@@ -97,7 +79,7 @@ export default class AuthForm extends Component {
               className="btn-login-up"
               type="submit"
               value={registration ? 'Sing up' : 'Login'}
-              onClick={this.onSubmite}
+              onClick={this.onSubmit}
             />
           </div>
         </div>
@@ -105,4 +87,4 @@ export default class AuthForm extends Component {
       </div>
     );
   }
-  }
+}

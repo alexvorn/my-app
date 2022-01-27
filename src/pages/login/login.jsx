@@ -6,11 +6,6 @@ import AuthForm from '../../components/authForm';
 
 class Login extends Component {
 
-    loginUser = (user) => {
-        this.props.loginUser(user);
-    }
-    
-
     render() {
         return (
             <div className='login-page'>
@@ -18,7 +13,7 @@ class Login extends Component {
                 <div>
                     <img src={require('../../images/logo.png')}/>
                     <h1>Login</h1>
-                    <AuthForm onSubmite={this.loginUser}/>
+                    <AuthForm onSubmite={this.props.loginUser}/>
                 </div>
             </div>
         )

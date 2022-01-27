@@ -5,22 +5,14 @@ import { login as loginAction } from '../../actions/login';
 import { connect } from 'react-redux';
 
 class Registration extends Component {
-
-    loginUser = (user) => {
-        console.log(user)
-
-        this.props.loginUser(user);
-    }
-
     render() {
-        const registrationActive = true;
         return (
             <div className='login-page'>
                 <Image />
                 <div>
                     <img src={require('../../images/logo.png')}/>
                     <h1>Sing up</h1>
-                    <AuthForm registration={registrationActive} onSubmite={this.loginUser}/>
+                    <AuthForm registration onSubmite={this.props.loginUser}/>
                 </div>
             </div>
         )
