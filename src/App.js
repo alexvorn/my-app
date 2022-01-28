@@ -1,20 +1,19 @@
 import React, { Component } from 'react';
 import MainRouter from './router/MainRouter';
 import './App.css';
-import { getUsers as usersAction} from './actions/users';
+import { getUsers as usersAction} from './actions/getUsers';
 import { connect } from 'react-redux';
 
 
 class App extends Component {
     render() {
-        localStorage.clear()
         return (
             <div>
                 <MainRouter />
             </div>
         )
-    }
-}
+    };
+};
 
 export default connect(
     state => ({
@@ -22,6 +21,5 @@ export default connect(
     }),
     dispatch => ({
         user: dispatch(usersAction()),
-    } 
-    ),
+    }),
 )(App);

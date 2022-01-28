@@ -10,7 +10,7 @@ export default class AuthForm extends Component {
       error: '',
       confirmPassword: '',
     };
-  }
+  };
 
   onInput = (e) => {
     const email = e.target.name === 'email' ? e.target.value : this.state.email;
@@ -18,7 +18,7 @@ export default class AuthForm extends Component {
     const confirmPassword = e.target.name === 'Confirm password' ? e.target.value : this.state.confirmPassword;
     this.setState({email, password, confirmPassword});
 
-  }
+  };
 
   validPassword = () => {
     if (this.state.password === this.state.confirmPassword) {
@@ -29,7 +29,7 @@ export default class AuthForm extends Component {
     }
     this.setState({error: 'passwords don`t match'});
     return false;
-  }
+  };
 
   validEmail = () => {
     const re = /[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/;
@@ -40,7 +40,7 @@ export default class AuthForm extends Component {
     }
     
     return valid; 
-  }
+  };
 
   isValidation = () => this.validEmail && this.validPassword;
 
@@ -54,7 +54,7 @@ export default class AuthForm extends Component {
 
       this.props.onSubmite(user);
     }
-  }
+  };
 
 
   render() {
@@ -89,5 +89,5 @@ export default class AuthForm extends Component {
         {link}
       </div>
     );
-  }
-}
+  };
+};

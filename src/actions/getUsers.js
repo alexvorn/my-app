@@ -1,9 +1,9 @@
-import Api from './api';
+import Ip from '../services/Ip';
 import { LOGIN } from '../constants/actionTypes';
 
 export function getUsers () {
     return (dispatch) => {
-        Api.get('/users', {
+        Ip.get('/users', {
             headers: {
                 'Authorization': `Bearer ${localStorage.getItem('token')}`
             }
