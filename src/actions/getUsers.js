@@ -3,11 +3,7 @@ import { LOGIN } from '../constants/actionTypes';
 
 export function getUsers () {
     return (dispatch) => {
-        Ip.get('/users', {
-            headers: {
-                'Authorization': `Bearer ${localStorage.getItem('token')}`
-            }
-        })
+        Ip.get('/users')
         .then(res => {
             dispatch({ 
                 type: LOGIN,
