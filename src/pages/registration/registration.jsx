@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import Image from '../../components/imageRobot';
 import AuthForm from '../../components/authForm';
-import { login as loginAction } from '../../actions/login';
+import { registration as registrationAction } from '../../actions/registration';
 import { connect } from 'react-redux';
 
 class Registration extends Component {
@@ -12,7 +12,7 @@ class Registration extends Component {
                 <div>
                     <img src={require('../../images/logo.png')}/>
                     <h1>Sing up</h1>
-                    <AuthForm registration onSubmite={this.props.loginUser}/>
+                    <AuthForm registration onSubmite={this.props.registrationUser}/>
                 </div>
             </div>
         )
@@ -24,8 +24,8 @@ export default connect(
         user: state.login
     }),
     dispatch => ({
-        loginUser: user => {
-            dispatch(loginAction(user))
+        registrationUser: user => {
+            dispatch(registrationAction(user))
         }
     }),
 )(Registration);

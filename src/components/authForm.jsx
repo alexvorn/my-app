@@ -48,6 +48,7 @@ export default class AuthForm extends Component {
       const user = {
         email: this.state.email,
         password: this.state.password,
+        userType: 'parent',
       };
 
       this.props.onSubmite(user);
