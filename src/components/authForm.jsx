@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Link } from "react-router-dom";
 
 export default class AuthForm extends Component {
   constructor(props) {
@@ -59,8 +60,9 @@ export default class AuthForm extends Component {
   render() {
     const { registration } = this.props;
     const link = registration
-      ? <p>Already have an account? <a>Log In now</a></p>
-      : <p>Not a member? <a>Sign up now</a></p>;
+      ? <p>Already have an account? <Link to="/login">Log In now</Link></p>
+      : <p>Not a member? <Link to="/registration">Sign up now</Link></p>;
+      
 
     return (
       <div className="registration-form">
