@@ -5,8 +5,8 @@ export default function authReducer(state = {}, action) {
         return {
             ...state,
             user: action.payload
-        }
-    }
+        };
+    };
 
-    return state
-}
+    return state;
+};

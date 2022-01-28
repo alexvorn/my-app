@@ -36,14 +36,14 @@ function MainRouter(props) {
 function mapStateToProps(state) {
     return {
       user: state.auth.user,
-    }
-}
+    };
+};
 
 function registrationActive(state) {
     return {
         active: state.registrationActive
-    }
-}
+    };
+};
 
 
   

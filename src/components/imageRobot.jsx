@@ -9,5 +9,5 @@ export default class authImage extends Component {
                 </div>
             </div>
         )
-    }
-}
+    };
+};

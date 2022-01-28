@@ -7,14 +7,13 @@ import { connect } from 'react-redux';
 
 class App extends Component {
     render() {
-        localStorage.clear()
         return (
             <div>
                 <MainRouter />
             </div>
         )
-    }
-}
+    };
+};
 
 export default connect(
     state => ({
@@ -22,6 +21,5 @@ export default connect(
     }),
     dispatch => ({
         user: dispatch(usersAction()),
-    } 
-    ),
+    }),
 )(App);

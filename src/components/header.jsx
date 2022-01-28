@@ -13,4 +13,4 @@ export default function Header(props) {
             {email && <span>Hello {email}</span>}
         </div>
     )
-}
+};

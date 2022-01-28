@@ -1,10 +1,10 @@
 import { REGISTRATION } from '../constants/actionTypes';
-import Api from './api'
+import Ip from '../services/Ip'
 
 export function registration(payload) {
     const { email, password, userType } = payload;
     return (dispatch) => {
-        Api.post('/auth/register', { email, password, userType }).then(response =>{
+        Ip.post('/auth/register', { email, password, userType }).then(response =>{
             dispatch({ 
                 type: REGISTRATION,
                 payload: response.data.user,
