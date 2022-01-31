@@ -1,14 +1,17 @@
-import Ip from '../services/Ip';
+import Api from '../services/Api';
 import { LOGIN } from '../constants/actionTypes';
 
 export function getUsers () {
+    const token = localStorage.getItem('token');
     return (dispatch) => {
-        Ip.get('/users')
-        .then(res => {
-            dispatch({ 
-                type: LOGIN,
-                payload: res.data
+        if (token) {
+            Api.get('/users')
+            .then(res => {
+                dispatch({ 
+                    type: LOGIN,
+                    payload: res.data
+                })
             })
-        })
+        }
     }
 }

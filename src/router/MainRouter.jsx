@@ -12,6 +12,7 @@ import Registration from '../pages/registration';
 
 function MainRouter(props) {
     const defaultRedirect = props.user ? '/home' : '/login';
+    console.log(props.user)
     return (
         <BrowserRouter>
             <Header user={props.user} />

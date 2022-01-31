@@ -12,7 +12,7 @@ class Registration extends Component {
                 <div>
                     <img src={require('../../images/logo.png')}/>
                     <h1>Sing up</h1>
-                    <AuthForm registration onSubmite={this.props.registrationUser}/>
+                    <AuthForm registration onSubmit={this.props.registrationUser}/>
                 </div>
             </div>
         )
@@ -24,7 +24,7 @@ export default connect(
         user: state.login
     }),
     dispatch => ({
-        registrationUser: user => {
+        userRegistration: user => {
             dispatch(registrationAction(user))
         }
     }),

@@ -1,10 +1,10 @@
 import { LOGIN } from '../constants/actionTypes';
-import Ip from '../services/Ip'
+import Api from '../services/Api'
 
 export function login(payload) {
     const { email, password } = payload;
     return (dispatch) => {
-        Ip.post('/auth/signin', { email, password }).then(response =>{
+        Api.post('/auth/signin', { email, password }).then(response =>{
             localStorage.setItem('token', response.data.accessToken)
             dispatch({ 
                 type: LOGIN,
