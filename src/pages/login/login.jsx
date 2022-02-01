@@ -13,7 +13,7 @@ class Login extends Component {
                 <div>
                     <img src={require('../../images/logo.png')}/>
                     <h1>Login</h1>
-                    <AuthForm onSubmite={this.props.loginUser}/>
+                    <AuthForm onSubmit={this.props.loginUser}/>
                 </div>
             </div>
         )

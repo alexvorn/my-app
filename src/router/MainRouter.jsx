@@ -9,10 +9,10 @@ import Header from '../components/header';
 import Home from '../pages/home';
 import Login from '../pages/login';
 import Registration from '../pages/registration';
+import { registration as registrationAction } from '../actions/registration';
 
 function MainRouter(props) {
     const defaultRedirect = props.user ? '/home' : '/login';
-    console.log(props.user)
     return (
         <BrowserRouter>
             <Header user={props.user} />
@@ -20,7 +20,7 @@ function MainRouter(props) {
                 {!props.user && (
                     <>
                         <Route path="/login" element={<Login />} />
-                        <Route path="/registration" element={<Registration />} />
+                        <Route path="/registration" element={<Registration onSubmit={props.registrationUser} />} />
                     </>
                 )}
                 {props.user && (
@@ -41,9 +41,11 @@ function mapStateToProps(state) {
 };
 
 function registrationActive(state) {
-    return {
-        active: state.registrationActive
-    };
+    return dispatch => ({
+            registrationUser: user => {
+                dispatch(registrationAction(user))
+            }
+        })
 };
 
 

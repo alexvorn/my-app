@@ -1,6 +1,6 @@
 import { REGISTRATION } from '../constants/actionTypes';
 
-export default function registrationFormActive(state = {}, action) {
+export default function userRegistration(state = {}, action) {
   if (action.type === REGISTRATION) {
     return {
       ...state,

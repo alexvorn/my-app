@@ -19,10 +19,9 @@ class Home extends Component {
 }
 
 export default connect(
-    state => {
-        console.log(state)
-       return { user: state.auth.user}
-    },
+    state => ({
+       user: state.auth.user
+    }),
     dispatch => ({
         logoutUser: () => {
             dispatch(logoutAction())

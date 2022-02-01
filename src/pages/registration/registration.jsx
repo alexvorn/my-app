@@ -12,7 +12,7 @@ class Registration extends Component {
                 <div>
                     <img src={require('../../images/logo.png')}/>
                     <h1>Sing up</h1>
-                    <AuthForm registration onSubmit={this.props.registrationUser}/>
+                    <AuthForm registration onSubmit={this.props.userRegistration}/>
                 </div>
             </div>
         )

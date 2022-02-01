@@ -52,7 +52,7 @@ export default class AuthForm extends Component {
         userType: 'parent',
       };
 
-      this.props.onSubmite(user);
+      this.props.onSubmit(user);
     }
   };
 
