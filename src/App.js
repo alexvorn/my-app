@@ -7,6 +7,7 @@ import { connect } from 'react-redux';
 
 class App extends Component {
     render() {
+        this.props.userIsLoggedIn();
         return (
             <div>
                 <MainRouter />
@@ -20,6 +21,8 @@ export default connect(
         user: state.login
     }),
     dispatch => ({
-        user: dispatch(usersAction()),
+        userIsLoggedIn: () => { 
+            dispatch(usersAction())
+        },
     }),
 )(App);
