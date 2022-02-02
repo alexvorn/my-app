@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import MainRouter from './router/MainRouter';
 import './App.css';
-import { getUsers as usersAction} from './actions/getUsers';
+import { getUsers as usersAction} from './actions/users';
 import { connect } from 'react-redux';
 
 

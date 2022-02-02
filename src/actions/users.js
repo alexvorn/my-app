@@ -1,5 +1,5 @@
 import Api from '../services/Api';
-import { LOGIN } from '../constants/actionTypes';
+import { SET_USER } from '../constants/actionTypes';
 
 export function getUsers () {
     const token = localStorage.getItem('token');
@@ -8,7 +8,7 @@ export function getUsers () {
             Api.get('/users')
             .then(res => {
                 dispatch({ 
-                    type: LOGIN,
+                    type: SET_USER,
                     payload: res.data
                 })
             })

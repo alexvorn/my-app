@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from "react-redux";
-import { logout as logoutAction } from '../../actions/logout';
+import { logout as logoutAction } from '../../actions/login';
 
 class Home extends Component {
 

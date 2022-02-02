@@ -9,7 +9,7 @@ import Header from '../components/header';
 import Home from '../pages/home';
 import Login from '../pages/login';
 import Registration from '../pages/registration';
-import { registration as registrationAction } from '../actions/registration';
+import { registration as registrationAction } from '../actions/login';
 
 function MainRouter(props) {
     const defaultRedirect = props.user ? '/home' : '/login';
@@ -20,7 +20,7 @@ function MainRouter(props) {
                 {!props.user && (
                     <>
                         <Route path="/login" element={<Login />} />
-                        <Route path="/registration" element={<Registration onSubmit={props.registrationUser} />} />
+                        <Route path="/registration" element={<Registration />} />
                     </>
                 )}
                 {props.user && (
