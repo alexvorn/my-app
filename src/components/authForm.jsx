@@ -20,31 +20,42 @@ export default class AuthForm extends Component {
 
   };
 
-  validPassword = () => {
-    if (this.state.password === this.state.confirmPassword) {
+  validatePassword = () => {
+    const { registration } = this.props;
+    let valid = true;
+    if (registration) {
       if (this.state.confirmPassword === '') {
+        valid = false;
+        if (this.state.password === this.state.confirmPassword) {
+          return false;
+        }
+        return true;
+      }
+      this.setState({error: 'passwords don`t match'});
+      return false;
+    }else {
+      if (this.state.password === '') {
+        this.setState({error: 'passwords don`t match'});
+        console.log(this.state.error)
         return false;
       }
       return true;
     }
-    this.setState({error: 'passwords don`t match'});
-    return false;
+    
   };
 
   validEmail = () => {
     const re = /[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/;
     const { email } = this.state;
-    const valid = re.test(String(email).toLowerCase());
-    if (!valid) {
-      this.setState({error: 'email is not valid'});
-    }
-    
+    const valid = re.test(String(email).toLowerCase()) ? this.setState({error: ''}) : this.setState({error: 'email is not valid'});
     return valid; 
   };
 
-  isValidation = () => this.validEmail && this.validPassword;
+  isValidation = () => this.validEmail() && this.validPassword();
 
   onSubmit = () => {
+    this.validEmail();
+    this.validPassword();
     if (this.isValidation()) {
       const user = {
         email: this.state.email,
