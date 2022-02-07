@@ -16,46 +16,59 @@ export default class AuthForm extends Component {
     const email = e.target.name === 'email' ? e.target.value : this.state.email;
     const password = e.target.name === 'password' ? e.target.value : this.state.password;
     const confirmPassword = e.target.name === 'Confirm password' ? e.target.value : this.state.confirmPassword;
-    this.setState({email, password, confirmPassword});
-
+    this.setState({email, password, confirmPassword, error: ''});
   };
+
+  validatePasswordRegistration() {
+    const isEmpty = this.state.confirmPassword === '' || this.state.password === '';
+    const passMatch = this.state.password === this.state.confirmPassword;
+
+    let error = '';
+
+    if (isEmpty) {
+      error = 'Passwords should not be empty';
+    }
+
+    if (!passMatch) {
+      error = 'Passwords don\'t match';
+    }
+
+    this.setState({ error });
+
+    return !isEmpty && passMatch;
+  }
 
   validatePassword = () => {
     const { registration } = this.props;
-    let valid = true;
+
     if (registration) {
-      if (this.state.confirmPassword === '') {
-        valid = false;
-        if (this.state.password === this.state.confirmPassword) {
-          return false;
-        }
-        return true;
-      }
-      this.setState({error: 'passwords don`t match'});
-      return false;
-    }else {
-      if (this.state.password === '') {
-        this.setState({error: 'passwords don`t match'});
-        console.log(this.state.error)
-        return false;
-      }
-      return true;
+      return this.validatePasswordRegistration();
     }
-    
+
+    const isEmpty = this.state.password !== '';
+
+    if (!isEmpty) {
+      this.setState({ error: 'Password should not be empty' });
+    }
+
+    return isEmpty;
   };
 
   validEmail = () => {
     const re = /[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/;
     const { email } = this.state;
-    const valid = re.test(String(email).toLowerCase()) ? this.setState({error: ''}) : this.setState({error: 'email is not valid'});
+    const valid = re.test(email.toLowerCase());
+
+    if (!valid) {
+      this.setState({ error: 'email is not valid' });
+    }
+
     return valid; 
   };
 
-  isValidation = () => this.validEmail() && this.validPassword();
+  isValidation = () => this.validEmail() && this.validatePassword();
 
   onSubmit = () => {
-    this.validEmail();
-    this.validPassword();
     if (this.isValidation()) {
       const user = {
         email: this.state.email,
@@ -83,7 +96,7 @@ export default class AuthForm extends Component {
             <input type="text" placeholder="Email" name="email" onInput={this.onInput} onBlur={this.validEmail}/>
             <input type="password" placeholder="Your password" name="password" onInput={this.onInput} />
             {registration && (
-              <input type="password" placeholder="Confirm password" name="Confirm password"  onInput={this.onInput} onBlur={this.validPassword}/>
+              <input type="password" placeholder="Confirm password" name="Confirm password"  onInput={this.onInput} onBlur={this.validatePassword}/>
             )}
             <p>{this.state.error}</p>
             {!registration && (
