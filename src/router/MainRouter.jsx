@@ -40,7 +40,7 @@ function mapStateToProps(state) {
     };
 };
 
-function registrationActive(state) {
+function registrationActive() {
     return dispatch => ({
             registrationUser: user => {
                 dispatch(registrationAction(user))

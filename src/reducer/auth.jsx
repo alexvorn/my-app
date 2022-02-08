@@ -1,4 +1,4 @@
-import { SET_USER, LOGOUT, REGISTRATION } from '../constants/actionTypes';
+import { SET_USER, LOGOUT} from '../constants/actionTypes';
 
 export default function authReducer(state = {}, action) {
     switch(action.type) {
@@ -11,11 +11,6 @@ export default function authReducer(state = {}, action) {
             return {
                 ...state,
                 user: null,
-            };
-        case REGISTRATION: 
-            return {
-                ...state,
-                user: action.payload,
             };
         default:
             return state;

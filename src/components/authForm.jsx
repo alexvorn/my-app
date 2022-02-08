@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from "react-router-dom";
 
+
 export default class AuthForm extends Component {
   constructor(props) {
     super(props);
@@ -82,7 +83,7 @@ export default class AuthForm extends Component {
 
 
   render() {
-    const { registration } = this.props;
+    const { registration, error } = this.props;
     const link = registration
       ? <p>Already have an account? <Link to="/login">Log In now</Link></p>
       : <p>Not a member? <Link to="/registration">Sign up now</Link></p>;
@@ -98,7 +99,7 @@ export default class AuthForm extends Component {
             {registration && (
               <input type="password" placeholder="Confirm password" name="Confirm password"  onInput={this.onInput} onBlur={this.validatePassword}/>
             )}
-            <p>{this.state.error}</p>
+            <p>{this.state.error || error}</p>
             {!registration && (
               <a href="">Forgot password?</a>
             )}
