@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import Image from '../../components/imageRobot';
 import AuthForm from '../../components/authForm';
-import { registration as registrationAction } from '../../actions/login';
+import { registration as registrationAction } from '../../actions/auth';
 import { connect } from 'react-redux';
 
 class Registration extends Component {

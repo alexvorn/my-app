@@ -12,6 +12,7 @@
 
 button {
   background-color: rgb(83, 83, 235);
+  cursor: pointer;
 }
 a {
   padding: 0 50px;

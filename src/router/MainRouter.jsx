@@ -9,7 +9,7 @@ import Header from '../components/header';
 import Home from '../pages/home';
 import Login from '../pages/login';
 import Registration from '../pages/registration';
-import { registration as registrationAction } from '../actions/login';
+import { registration as registrationAction } from '../actions/auth';
 
 function MainRouter(props) {
     const defaultRedirect = props.user ? '/home' : '/login';

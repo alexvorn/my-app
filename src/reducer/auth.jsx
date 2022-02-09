@@ -1,4 +1,4 @@
-import { SET_USER, LOGOUT} from '../constants/actionTypes';
+import { SET_USER, LOGOUT, ERROR} from '../constants/actionTypes';
 
 export default function authReducer(state = {}, action) {
     switch(action.type) {
@@ -12,6 +12,11 @@ export default function authReducer(state = {}, action) {
                 ...state,
                 user: null,
             };
+        case ERROR: 
+            return {
+                ...state,
+                error: action.payload,
+        };
         default:
             return state;
     }

@@ -1,6 +1,5 @@
-import { __SECRET_INTERNALS_DO_NOT_USE_OR_YOU_WILL_BE_FIRED } from 'react-dom';
-import { SET_USER, LOGOUT} from '../constants/actionTypes';
-import Api from '../services/Api'
+import { SET_USER, LOGOUT, ERROR } from '../constants/actionTypes';
+import Api from '../services/Api';
 
 function setUser(user) {
     return {
@@ -8,12 +7,26 @@ function setUser(user) {
         payload: user,
     }
 }
-export function login(payload, onError) {
+
+function errorMessage(error) {
+    return {
+        type: ERROR,
+        payload: error,
+    }
+}
+
+export function login(payload) {
     const { email, password } = payload;
     return async (dispatch) => {
-        let response = await Api.post('/auth/signin', { email, password});
-        localStorage.setItem('token', response.data.accessToken)
-        dispatch(setUser(response.data.user));
+        Api.post('/auth/signin', { email, password}).then(res => { 
+            localStorage.setItem('token', res.data.accessToken)
+            dispatch(setUser(res.data.user));
+            dispatch(errorMessage(''));
+        })
+        .catch(error => {
+            dispatch(errorMessage(error.response.data.message[0]));
+        });
+        
     }
 }
 
@@ -31,5 +44,5 @@ export function registration(payload) {
             localStorage.setItem('token', response.data.accessToken)
             dispatch(setUser(response.data.user));
         });
-    }
-}
+    };
+};
