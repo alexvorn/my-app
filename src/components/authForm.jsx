@@ -14,16 +14,12 @@ export default class AuthForm extends Component {
   };
 
   onInput = (e) => {
-    const email = e.target.name === 'email' ? e.target.value : this.state.email;
-    const password = e.target.name === 'password' ? e.target.value : this.state.password;
-    const confirmPassword = e.target.name === 'Confirm password' ? e.target.value : this.state.confirmPassword;
-    this.setState({email, password, confirmPassword, error: ''});
+    this.setState({[e.target.name]: e.target.value});
   };
 
   validatePasswordRegistration() {
     const isEmpty = this.state.confirmPassword === '' || this.state.password === '';
     const passMatch = this.state.password === this.state.confirmPassword;
-
     let error = '';
 
     if (isEmpty) {
@@ -97,7 +93,7 @@ export default class AuthForm extends Component {
             <input type="text" placeholder="Email" name="email" onInput={this.onInput} onBlur={this.validEmail}/>
             <input type="password" placeholder="Your password" name="password" onInput={this.onInput} />
             {registration && (
-              <input type="password" placeholder="Confirm password" name="Confirm password"  onInput={this.onInput} onBlur={this.validatePassword}/>
+              <input type="password" placeholder="Confirm password" name="confirmPassword"  onInput={this.onInput} onBlur={this.validatePassword}/>
             )}
             <p>{this.state.error || error}</p>
             {!registration && (

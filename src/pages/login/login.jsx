@@ -25,7 +25,6 @@ class Login extends Component {
 
 export default connect(
     state => ({
-        user: state.login,
         error: state.auth.error
     }),
     dispatch => ({

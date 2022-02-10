@@ -8,7 +8,7 @@ function setUser(user) {
     }
 }
 
-function errorMessage(error) {
+function setError(error) {
     return {
         type: ERROR,
         payload: error,
@@ -21,10 +21,9 @@ export function login(payload) {
         Api.post('/auth/signin', { email, password}).then(res => { 
             localStorage.setItem('token', res.data.accessToken)
             dispatch(setUser(res.data.user));
-            dispatch(errorMessage(''));
         })
         .catch(error => {
-            dispatch(errorMessage(error.response.data.message[0]));
+            dispatch(setError(error.response.data.message[0]));
         });
         
     }
@@ -43,6 +42,9 @@ export function registration(payload) {
         Api.post('/auth/register', { email, password, userType }).then(response =>{
             localStorage.setItem('token', response.data.accessToken)
             dispatch(setUser(response.data.user));
-        });
+        })
+        .catch(error => {
+            dispatch(setError(error.response.data.message[0]));
+        });;
     };
 };
