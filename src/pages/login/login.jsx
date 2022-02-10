@@ -1,18 +1,13 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { login as loginAction } from '../../actions/login';
+import { login as loginAction } from '../../actions/auth';
 import Image from '../../components/imageRobot';
 import AuthForm from '../../components/authForm';
 
 class Login extends Component {
-
-    loginUser = (user) => {
-        console.log(2)
-        console.log(user)
-
+    onSubmit = (user) => {
         this.props.loginUser(user);
     }
-    
 
     render() {
         return (
@@ -21,7 +16,7 @@ class Login extends Component {
                 <div>
                     <img src={require('../../images/logo.png')}/>
                     <h1>Login</h1>
-                    <AuthForm onSubmite={this.loginUser}/>
+                    <AuthForm onSubmit={this.onSubmit} error={this.props.error}/>
                 </div>
             </div>
         )
@@ -30,10 +25,10 @@ class Login extends Component {
 
 export default connect(
     state => ({
-        user: state.login
+        error: state.auth.error
     }),
     dispatch => ({
-        loginUser: user => {
+        loginUser: (user) => {
             dispatch(loginAction(user))
         }
     }),

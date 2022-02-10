@@ -1,26 +1,18 @@
 import React, { Component } from 'react';
 import Image from '../../components/imageRobot';
 import AuthForm from '../../components/authForm';
-import { login as loginAction } from '../../actions/login';
+import { registration as registrationAction } from '../../actions/auth';
 import { connect } from 'react-redux';
 
 class Registration extends Component {
-
-    loginUser = (user) => {
-        console.log(user)
-
-        this.props.loginUser(user);
-    }
-
     render() {
-        const registrationActive = true;
         return (
             <div className='login-page'>
                 <Image />
                 <div>
                     <img src={require('../../images/logo.png')}/>
                     <h1>Sing up</h1>
-                    <AuthForm registration={registrationActive} onSubmite={this.loginUser}/>
+                    <AuthForm registration onSubmit={this.props.userRegistration} error={this.props.error}/>
                 </div>
             </div>
         )
@@ -29,11 +21,11 @@ class Registration extends Component {
 
 export default connect(
     state => ({
-        user: state.login
+        error: state.auth.error
     }),
     dispatch => ({
-        loginUser: user => {
-            dispatch(loginAction(user))
+        userRegistration: user => {
+            dispatch(registrationAction(user))
         }
     }),
 )(Registration);

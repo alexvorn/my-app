@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
 import { connect } from "react-redux";
+import { logout as logoutAction } from '../../actions/auth';
 
-class home extends Component {
+class Home extends Component {
+
     render() {
         const { user } = this.props;
         const email = user?.email;
@@ -9,6 +11,7 @@ class home extends Component {
         return (
             <div>
                 <span>{email}</span>
+                <button onClick={this.props.logoutUser}>Logout</button>
                 <h1>Home</h1>
             </div>
         )
@@ -17,6 +20,11 @@ class home extends Component {
 
 export default connect(
     state => ({
-        user: state.auth.user
-    })
-)(home);
+       user: state.auth.user
+    }),
+    dispatch => ({
+        logoutUser: () => {
+            dispatch(logoutAction())
+        },
+    }),
+)(Home);

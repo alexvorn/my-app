@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import { Link } from "react-router-dom";
+
 
 export default class AuthForm extends Component {
   constructor(props) {
@@ -9,84 +11,91 @@ export default class AuthForm extends Component {
       error: '',
       confirmPassword: '',
     };
-  }
+  };
 
-  getPassword = (e) => {
-    const password = e.target.value;
-    this.setState({password});
-  }
+  onInput = (e) => {
+    this.setState({[e.target.name]: e.target.value});
+  };
 
-  getEmail = (e) => {
-    const error = '';
-    const email = e.target.value;
-    this.isValidationEmail(email)
-    this.setState({email, error});
-  }
-  confirmPassword = (e) => {
-    const error = '';
-    const confirmPassword = e.target.value;
-    this.setState({confirmPassword, error});
-  }
+  validatePasswordRegistration() {
+    const isEmpty = this.state.confirmPassword === '' || this.state.password === '';
+    const passMatch = this.state.password === this.state.confirmPassword;
+    let error = '';
 
-  isValidationPassword = () => {
-    if (this.state.password === this.state.confirmPassword) {
-      return true
+    if (isEmpty) {
+      error = 'Passwords should not be empty';
     }
-    this.setState({error: 'passwords don`t match'})
-    return false
+
+    if (!passMatch) {
+      error = 'Passwords don\'t match';
+    }
+
+    this.setState({ error });
+
+    return !isEmpty && passMatch;
   }
 
-  isValidationEmail = () => {
+  validatePassword = () => {
+    const { registration } = this.props;
+
+    if (registration) {
+      return this.validatePasswordRegistration();
+    }
+
+    const isEmpty = this.state.password !== '';
+
+    if (!isEmpty) {
+      this.setState({ error: 'Password should not be empty' });
+    }
+
+    return isEmpty;
+  };
+
+  validEmail = () => {
     const re = /[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/;
-    const email = this.state.email;
-    const validateEmail = re.test(String(email).toLowerCase());
-    if (validateEmail) {
-      return true
+    const { email } = this.state;
+    const valid = re.test(email.toLowerCase());
+
+    if (!valid) {
+      this.setState({ error: 'email is not valid' });
     }
-    this.setState({error: 'email is not valid'})
-    return false 
-  }
 
-  isValidation = () => {
-    const validEmail = this.isValidationEmail();
-    const validPassword = this.isValidationPassword();
-    console.log('email', validEmail, 'password', validPassword)
+    return valid; 
+  };
 
-    if (validEmail || validPassword === true) {
-      return true
-    }
-    return false
-  }
+  isValidation = () => this.validEmail() && this.validatePassword();
 
-  onSubmite = () => {
+  onSubmit = () => {
     if (this.isValidation()) {
       const user = {
         email: this.state.email,
         password: this.state.password,
+        userType: 'parent',
       };
 
-      this.props.onSubmite(user)
+      this.props.onSubmit(user);
     }
-  }
+  };
 
 
   render() {
-    const { registration } = this.props;
+    const { registration, error } = this.props;
     const link = registration
-      ? <p>Already have an account? <a>Log In now</a></p>
-      : <p>Not a member? <a>Sign up now</a></p>;
+      ? <p>Already have an account? <Link to="/login">Log In now</Link></p>
+      : <p>Not a member? <Link to="/registration">Sign up now</Link></p>;
+      
 
     return (
       <div className="registration-form">
         <div>
           <div className="form">
             <span>Your email</span>
-            <input type="text" placeholder="Email" onInput={this.getEmail} onBlur={this.isValidationEmail}/>
-            <input type="password" placeholder="Your password" onInput={this.getPassword} />
+            <input type="text" placeholder="Email" name="email" onInput={this.onInput} onBlur={this.validEmail}/>
+            <input type="password" placeholder="Your password" name="password" onInput={this.onInput} />
             {registration && (
-              <input type="password" placeholder="Confirm password"  onInput={this.confirmPassword} onBlur={this.isValidation}/>
+              <input type="password" placeholder="Confirm password" name="confirmPassword"  onInput={this.onInput} onBlur={this.validatePassword}/>
             )}
-            <p>{this.state.error}</p>
+            <p>{this.state.error || error}</p>
             {!registration && (
               <a href="">Forgot password?</a>
             )}
@@ -94,12 +103,12 @@ export default class AuthForm extends Component {
               className="btn-login-up"
               type="submit"
               value={registration ? 'Sing up' : 'Login'}
-              onClick={this.onSubmite}
+              onClick={this.onSubmit}
             />
           </div>
         </div>
         {link}
       </div>
     );
-  }
-  }
+  };
+};
